@@ -1,0 +1,97 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'nav/admin.html' %}
+{% include 'message.html' %} 
+<style>
+    .w3l-about-breadcrumb .breadcrumb-bg-contact {
+    background-size: cover;
+    background-image: linear-gradient(to right, #17449e, rgba(26, 35, 129, 0.6)), url(static/images/blog2.jpg);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: center;
+    background-attachment: fixed; }
+  
+  .w3l-about-breadcrumb .breadcrumb-bg h3 {
+    font-size: 45px;
+    line-height: 50px;
+    color: #fff;
+    font-weight: 700; }   
+  td,table{
+    text-align: center;
+    padding: 10px;
+    border: 1px solid rgb(184, 151, 107);
+    border-collapse: collapse;
+  }
+  
+  </style>
+
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-contact py-5">
+        <div class="container py-lg-5 py-md-3 py-4 mt-5">
+        <h3>Admin</h3>
+
+      </div>
+    </div>
+  </section>
+
+
+<section class="w3l-contact py-5" id="contact" align="center">
+    <div class="container py-lg-3" align="center">  
+
+        <div class="col-md-8 contact-form" align="center">
+          <form  method="post">
+  
+          </form>
+        </div>
+          <h3 class="title mb-4"> Hospital Details </h3>
+          <div class="table-responsive">
+   <table width="100%" border="1" align="center">
+    
+                <tr >
+                  <td bgcolor="#91a1b8"><strong>Hospital Name</strong></div></td>
+                  <td bgcolor="#91a1b8"><strong>Email-Id</strong></div></td>                          
+                </tr>      
+                {% for item in user %}         
+                <tr>
+                    <td>{{item.username }}</td>
+                  <td>{{ item.email }}</td>               
+                </tr>
+                {% endfor %}
+              </table>
+  
+    </div>
+  </div>
+    <div class="container">
+    <h3 class="title mt-5 mb-3">Additional Hospital Details </h3>
+    <div class="table-responsive">
+    <table  width="100%" border="1" align="center">    
+ 
+    <tr>       
+    <td bgcolor="#91a1b8"><strong>Hospital Name</strong></td>                 
+    <td bgcolor="#91a1b8"><strong>Address</strong></td>                 
+    <td bgcolor="#91a1b8"><strong>Phone Number</strong></td>                 
+   
+      </tr>
+      {% for hospital_detail in hospital_detail %}   
+      <tr>
+        <td>{{hospital_detail.user.username}}</td>
+        <td>{{ hospital_detail.address_line_1 }} {{ hospital_detail.address_line_2 }} <br> {{ hospital_detail.city }} {{ hospital_detail.state }}
+      <br> {{ hospital_detail.country }}     {{ hospital_detail.postal_code }}
+        </td>  
+        <td>  {{ hospital_detail.phone_number }}</td>
+        <!-- <td>  <a href="{% url 'hospital_detail_update' %}" class="btn btn-primary">Update</a>
+       
+              <p class="text-danger fs-3 fw-medium">No hospital details available.</p>
+              <a href="{% url 'hospital_detail_create' %}" class="btn btn-primary">Create Hospital Details</a>
+     
+        </td> -->
+      </tr>
+      
+    {% endfor %}
+  </table>
+    </div>
+</div>
+  </section>
+
+{% endblock %}

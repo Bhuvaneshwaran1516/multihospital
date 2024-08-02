@@ -1,0 +1,56 @@
+{% extends 'index.html' %} 
+{% load static %}
+{% block content %}
+{% include 'nav/hospital.html' %}
+{% include 'message.html' %} 
+
+<style>
+    .w3l-about-breadcrumb .breadcrumb-bg-contact {
+    background-size: cover;
+    background-image: linear-gradient(to right, #17449e, rgba(26, 35, 129, 0.6)), url(static/images/appointment.jpg);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: center;
+    background-attachment: fixed; }
+  
+  .w3l-about-breadcrumb .breadcrumb-bg h2 {
+    font-size: 45px;
+    line-height: 50px;
+    color: #fff;
+    font-weight: 700; }   
+  
+  
+  </style>
+
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-contact py-5">
+        <div class="container py-lg-5 py-md-3 py-4 mt-5">
+        <h2>Respond to Request</h2>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="w3l-contact py-3" id="contact" align="center">
+    <div class="container py-lg-3" align="center">
+  
+  
+        
+<div class="container">
+    <h2>Respond to Request</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mt-4">
+            <label class="fw-bold mb-3">Status:</label>
+            {{form.status}}
+        </div>
+        <div class="mt-4">
+            <label class="fw-bold mb-3">Response_Message:</label>
+            {{form.response_message}}
+        </div>
+        <div class="mt-5 mb-5">
+        <button type="submit" class="btn btn-primary">Submit Response</button>
+        <a href="{% url 'view_requests' %}" class="btn btn-secondary">Cancel</a>
+    </div>
+    </form>
+</div>
+{% endblock %}

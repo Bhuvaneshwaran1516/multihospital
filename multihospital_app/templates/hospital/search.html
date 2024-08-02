@@ -1,0 +1,89 @@
+{% extends 'index.html' %} 
+{% load static %}
+{% block content %}
+{% include 'nav/hospital.html' %}
+{% include 'message.html' %} 
+
+<style>
+    .w3l-about-breadcrumb .breadcrumb-bg-contact {
+    background-size: cover;
+    background-image: linear-gradient(to right, #17449e, rgba(26, 35, 129, 0.6)), url(static/images/appointment.jpg);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: center;
+    background-attachment: fixed; }
+  
+  .w3l-about-breadcrumb .breadcrumb-bg h2 {
+    font-size: 45px;
+    line-height: 50px;
+    color: #fff;
+    font-weight: 700; }   
+  
+    td,table{
+    text-align: center;
+    padding: 18px;
+    border: 1px solid rgb(145, 128, 106);
+   
+  }
+  </style>
+
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-contact py-5">
+        <div class="container py-lg-5 py-md-3 py-4 mt-5">
+        <h2>Search Availability</h2>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="w3l-contact py-5" id="contact" align="center">
+    <div class="container py-lg-3" align="center"> 
+       
+        <form method="get" class="form-inline my-2 my-lg-0">
+          <div class="mb-3">
+          {{ search_form.query }}
+        </div>
+          <button class="btn btn-outline-primary my-4 my-sm-0" type="submit">Search</button>
+      </form>
+     
+     
+          <h3 class="title mb-5 mt-4" >Search Availability And Send Request </h3>
+          <div class="table-responsive">
+   <table width="100%" border="1" align="center">
+                <tr>
+                  <td bgcolor="#91a1b8"><strong>Hospital Name</strong></td>
+                  <td bgcolor="#91a1b8"><strong>Availability Name</strong></td>                 
+                  <td bgcolor="#91a1b8"><strong>Availability</strong></td>
+                   <td bgcolor="#91a1b8"><strong>Info</strong></td>                   
+                   <td bgcolor="#91a1b8"><strong>Send Request</strong></td>
+  
+  
+                </tr>
+           
+                {% for item in hospital_avails %}
+                <tr>
+                 
+                   
+                  <td>{{item.user.username }}</td>
+                 
+                     <td  >{{item.name}}</td>
+                  <td>{{item.availability}}</td>
+                  <td>{{item.info}}</td>
+            
+                      
+                  <td> <a  href="{% url 'send_request' item.id %}" class="btn btn-primary ">Send Request</a> </td>
+  
+                  {% endfor %}
+  
+  
+  
+                </tr>
+              
+  
+              </table>
+          </div>
+            </div>
+    </div>
+  </section>  
+
+{% endblock %}

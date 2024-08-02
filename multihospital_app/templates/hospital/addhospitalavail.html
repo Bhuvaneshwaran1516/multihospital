@@ -1,0 +1,101 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'nav/hospital.html' %}
+{% include 'message.html' %} 
+
+<style>
+    .w3l-about-breadcrumb .breadcrumb-bg-contact {
+    background-size: cover;
+    background-image: linear-gradient(to right, #17449e, rgba(26, 35, 129, 0.6)), url(static/images/appointment.jpg);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: center;
+    background-attachment: fixed; }
+  
+  .w3l-about-breadcrumb .breadcrumb-bg h2 {
+    font-size: 45px;
+    line-height: 50px;
+    color: #fff;
+    font-weight: 700; }   
+  
+  
+  </style>
+
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-contact py-5">
+        <div class="container py-lg-5 py-md-3 py-4 mt-5">
+        <h2>Add Availability</h2>
+
+      </div>
+    </div>
+  </section>
+
+
+<!-- Contact section -->
+<section class="w3l-contact py-5" id="contact" align="center">
+  <div class="container py-lg-3" align="center">
+    <h3 class="title mb-4 ">Add Hospital Availability  </h3>
+      
+
+      <div class="col-md-8 contact-form" align="center">
+        <form  method="POST"  enctype="multipart/form-data">
+          {% csrf_token %}
+          <div data-mdb-input-init class="form-outline mb-5">
+             
+            {{form.availabilitylist}}
+            {% if form.errors.availabilitylist %}
+            <label class="text-danger mt-2  fw-semibold">{{form.errors.availabilitylist}}</label>
+            {% endif %}
+           </div>   
+          
+          <div data-mdb-input-init class="form-outline mb-5">
+             
+            {{form.name}}
+            {% if form.errors.name %}
+            <label class="text-danger mt-2  fw-semibold">{{form.errors.name}}</label>
+            {% endif %}
+           </div>
+
+          
+           <div data-mdb-input-init class="form-outline mb-5">
+             
+            {{form.availability}}
+            {% if form.errors.availability %}
+            <label class="text-danger mt-2  fw-semibold">{{form.errors.availability}}</label>
+            {% endif %}
+           </div>
+
+           <div data-mdb-input-init class="form-outline mb-5">
+             
+            {{form.info}}
+            {% if form.errors.info %}
+            <label class="text-danger mt-2  fw-semibold">{{form.errors.info}}</label>
+            {% endif %}
+           </div>     
+        
+           <div data-mdb-input-init class="form-outline mb-5">
+             
+            {{form.image}}
+            {% if form.errors.image %}
+            <label class="text-danger mt-2  fw-semibold">{{form.errors.image}}</label>
+            {% endif %}
+           </div>     
+
+           <div class="form-group">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+        </form>
+
+
+
+
+      </div>
+
+
+  </div>
+
+</section>
+
+
+{% endblock %}

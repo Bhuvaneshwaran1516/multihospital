@@ -1,0 +1,119 @@
+{% extends 'index.html' %} 
+{% load static %}
+{% block content %}
+{% include 'nav/hospital.html' %}
+{% include 'message.html' %} 
+
+<style>
+    .w3l-about-breadcrumb .breadcrumb-bg-contact {
+    background-size: cover;
+    background-image: linear-gradient(to right, #17449e, rgba(26, 35, 129, 0.6)), url(static/images/appointment.jpg);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: center;
+    background-attachment: fixed; }
+  
+  .w3l-about-breadcrumb .breadcrumb-bg h2 {
+    font-size: 45px;
+    line-height: 50px;
+    color: #fff;
+    font-weight: 700; }   
+    td,table{
+    text-align: center;
+    padding: 18px;
+    border: 1px solid rgb(145, 128, 106);
+   
+  }
+  </style>
+
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-contact py-5">
+        <div class="container py-lg-5 py-md-3 py-4 mt-5">
+        <h2>Request Information</h2>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="w3l-contact py-5" id="contact" align="center">
+    <div class="container py-lg-3" align="center">
+  
+        <div>
+  
+        </div>
+  
+        
+         
+<div class="container">
+    <h3 class="mb-5">Hospital Requests Information</h3>
+    <div class="table-responsive">
+    <table  width="100%" border="1" align="center">
+        <tr>
+             <td bgcolor="#91a1b8"><strong>Request From</strong></td>
+          <td bgcolor="#91a1b8"><strong> Need</strong></td>
+          <td bgcolor="#91a1b8"><strong> Message</strong></td>
+
+           <td bgcolor="#91a1b8"><strong>Request Date</strong></td>
+             <td bgcolor="#91a1b8"><strong>Status</strong></td>
+             <td bgcolor="#91a1b8"><strong>Action</strong></td>
+
+        </tr>
+        {% for request in received_requests %}
+
+        <tr>
+       
+          <td>{{ request.from_user.username }}</td>
+          <td>{{ request.hospital_avail.name }}</td>
+              <td>{{ request.message }}</td>
+
+              <td>{{ request.date_created|date:"d-m-Y" }}</td>
+            <td>{{ request.get_status_display }}</td>   
+            <td>
+                {% if request.status == 'pending' %}
+                    <a href="{% url 'respond_to_request' request.id %}" class="btn btn-primary btn-sm">Respond</a>
+                {% else %}
+                    No actions available
+                {% endif %}
+            
+</td>   
+
+
+        </tr>
+       {% endfor %}
+
+      </table>
+    </div>
+
+    <!-- <h3 class="mt-5 mb-5">Accept/Reject Requests Information</h3>
+    <div class="table-responsive">
+    <table width="100%" border="1" align="center">
+        <tr>
+             <td bgcolor="#91a1b8"><strong>Response To</strong></td>
+          <td bgcolor="#91a1b8"><strong>Request Need</strong></td>
+          <td bgcolor="#91a1b8"><strong>Request Message</strong></td>
+          <td bgcolor="#91a1b8"><strong>Response Message</strong></td>
+           <td bgcolor="#91a1b8"><strong>Response Date</strong></td>
+             <td bgcolor="#91a1b8"><strong>Status</strong></td>
+
+
+        </tr>
+        {% for request in sent_requests %}
+
+        <tr>
+       
+          <td>{{ request.to_user.username }}</td>
+          <td>{{ request.hospital_avail.name }}</td>
+              <td>{{ request.message }}</td>
+            <td>{{ request.response_message }}</td>
+              <td>{{ request.date_created|date:"d-m-Y" }}</td>
+            <td>{{ request.get_status_display }}</td>   
+
+
+        </tr>
+       {% endfor %}
+
+      </table>
+    </div> -->
+</div>
+</section>
+
+{% endblock %}

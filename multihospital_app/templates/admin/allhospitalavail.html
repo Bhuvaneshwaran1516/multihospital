@@ -1,0 +1,100 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'nav/admin.html' %}
+{% include 'message.html' %} 
+
+<style>
+    .w3l-about-breadcrumb .breadcrumb-bg-contact {
+    background-size: cover;
+    background-image: linear-gradient(to right, #17449e, rgba(26, 35, 129, 0.6)), url(static/images/blog2.jpg);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: center;
+    background-attachment: fixed; }
+  
+  .w3l-about-breadcrumb .breadcrumb-bg h2 {
+    font-size: 45px;
+    line-height: 50px;
+    color: #fff;
+    font-weight: 700; }   
+
+    td,table{
+    text-align: center;
+    padding: 10px;
+    border: 1px solid rgb(145, 128, 106);
+   
+  }
+  
+  </style>
+
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-contact py-5">
+        <div class="container py-lg-5 py-md-3 py-4 mt-5">
+        <h2>Availability Information</h2>
+
+      </div>
+    </div>
+  </section>
+
+<!-- Contact section -->
+<section class="w3l-contact py-5" id="contact" align="center">
+  <div class="container py-lg-3" align="center">
+
+      <div>
+
+      </div>
+
+      <div class="col-md-8 contact-form" align="center">
+        <form  method="post">
+
+        </form>
+      </div>
+        <h3 class="title mb-4"> Hospital Availability   Information </h3>
+        <div class="table-responsive">
+ <table width="100%" border="1" align="center">
+              <tr>
+                        
+                <td bgcolor="#91a1b8"><strong>Hospital Name</strong></td>
+                <td bgcolor="#91a1b8"><strong>Availability Type</strong></td>
+       
+                <td bgcolor="#91a1b8"><strong>Availability Name</strong></td>
+                <td bgcolor="#91a1b8"><strong>Availability </strong></td>
+                 <td bgcolor="#91a1b8"><strong>Info</strong></td>
+                 <td bgcolor="#91a1b8"><strong>Image</strong></td>                  
+                 <td bgcolor="#91a1b8"><strong>Update</strong></td>
+                   <td bgcolor="#91a1b8"><strong>Remove</strong></td>
+
+              </tr>
+              {% for item in items %}
+              <tr>
+                <td>{{item.user.username}}</div></td>
+                <td>{{item.availabilitylist}}</div></td>
+                
+                   <td >{{item.name}}</div></td>
+              
+                <td>{{item.availability}}</div></td>
+                <td>{{item.info}}</div></td>
+                  
+                <td>
+                  {% if item.image %}
+                      <img src="{{ item.image.url }}" alt="{{ item.name }}" style="max-width: 100px; max-height: 100px;">
+                  {% else %}
+                      No Image
+                  {% endif %}
+              </td>  <!-- Display image if available -->
+                <td><a href="{% url 'adminupdate' item.id %}" class="btn btn-primary p-2 btn-sm">Update</a> </td>
+                <td>
+                <div align="center" class="style1">
+                  <a href="{% url 'adminremove' item.id %}" class="btn btn-danger p-2 btn-sm">Remove</a> 
+              </td>
+
+              </tr>
+		
+              {% endfor %}
+            </table>
+
+  </div>
+</div>
+</section>
+
+{% endblock %}

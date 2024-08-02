@@ -1,0 +1,94 @@
+{% extends 'index.html'%}
+{% load static %}
+{% block content %}
+{% include 'nav/home.html'%}
+{% include 'message.html' %} 
+
+<style>
+  .w3l-about-breadcrumb .breadcrumb-bg-contact {
+    background-size: cover;
+    background-image: linear-gradient(to right, #17449e, rgba(26, 35, 129, 0.6)), url(static/images/appointment.jpg);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: center;
+    background-attachment: fixed; }
+  
+  .w3l-about-breadcrumb .breadcrumb-bg h2 {
+    font-size: 45px;
+    line-height: 50px;
+    color: #fff;
+    font-weight: 700; }   
+  
+</style>
+<section class="w3l-about-breadcrumb">
+  <div class="breadcrumb-bg breadcrumb-bg-contact py-5">
+    <div class="container py-lg-5 py-md-3 py-4 mt-5">
+      <h2 class="">Register Hospital</h2>
+
+    </div>
+  </div>
+</section>
+
+<section class="w3l-contact py-5" id="contact" align="center">
+    <div class="container py-lg-3" align="center">
+      <h3 class="title mb-5 fw-bolder" style=" margin-bottom: 10px; "> Register Hospital Here </h3>
+        <div>
+  
+        </div>
+  
+        <div class="col-md-8 contact-form" align="center">
+          <form method="post">
+            {% csrf_token %}
+
+            <div data-mdb-input-init class="form-outline mb-5">
+             
+             {{form.username}}
+             {% if form.errors.username %}
+             <label class="text-danger mt-2  fw-semibold">{{form.errors.username}}</label>
+             {% endif %}
+            </div>
+
+            <div data-mdb-input-init class="form-outline mb-5">
+             
+                {{form.email}}
+                {% if form.errors.email %}
+                <label class="text-danger mt-2  fw-semibold">{{form.errors.email}}</label>
+                {% endif %}
+               </div>
+
+               <div data-mdb-input-init class="form-outline mb-5">
+             
+                {{form.password1}}
+                {% if form.errors.password1 %}
+                <label class="text-danger mt-2  fw-semibold">{{form.errors.password1}}</label>
+                {% endif %}
+               </div>
+               <div data-mdb-input-init class="form-outline mb-5">
+             
+                
+              {{form.password2}}
+                {% if form.errors.password2 %}
+                <label class="text-danger mt-2  fw-semibold">{{form.errors.password2}}</label>
+                {% endif %}
+               </div>
+
+          
+           
+          
+              <button class="btn btn-primary btn-style rounded-5 " type="submit">Submit</button>
+                 <button class="btn btn-primary btn-style rounded-5" type="reset">Reset</button>
+            </div>
+          </form>
+  
+  
+  
+        </div>
+  
+  
+    </div>
+  
+  
+  
+  </section>
+
+
+  {% endblock %}

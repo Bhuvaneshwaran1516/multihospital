@@ -1,0 +1,92 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'nav/hospital.html' %}
+{% include 'message.html' %} 
+<style>
+    .w3l-about-breadcrumb .breadcrumb-bg-contact {
+    background-size: cover;
+    background-image: linear-gradient(to right, #17449e, rgba(26, 35, 129, 0.6)), url(static/images/appointment.jpg);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: center;
+    background-attachment: fixed; }
+  
+  .w3l-about-breadcrumb .breadcrumb-bg h2 {
+    font-size: 45px;
+    line-height: 50px;
+    color: #fff;
+    font-weight: 700; }   
+  
+    td,table{
+    text-align: center;
+    padding: 18px;
+    border: 1px solid rgb(145, 128, 106);
+   
+  }
+  </style>
+
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-contact py-5">
+        <div class="container py-lg-5 py-md-3 py-4 mt-5">
+        <h2>Status</h2>
+
+      </div>
+    </div>
+  </section>  
+
+  
+  <section class="w3l-contact py-5" id="contact" >
+    <div class="container py-lg-3" >
+  
+        <div>
+  
+        </div>
+
+<div class="container">
+    <h2 class="text-center text-danger mb-3">{{ form.instance.id|yesno:"Update,Create" }} Hospital Detail</h2>
+    <form method="post">
+        {% csrf_token %}
+
+    <div data-mdb-input-init class="form-outline mb-4 mt-5">
+      <label class="mb-2  " style="font-weight: 600;">Address:</label>
+             
+      {{form.address}}
+     </div> 
+     
+    <div data-mdb-input-init class="form-outline mb-4 ">
+      <label class="mb-2  " style="font-weight: 600;">Landmark:</label>
+             
+      {{form.landmark}}
+     </div> 
+     <div data-mdb-input-init class="form-outline mb-4">
+      <label class="mb-2  " style="font-weight: 600;">City:</label>
+             
+      {{form.city}}
+     </div> 
+     <div data-mdb-input-init class="form-outline mb-4 ">
+      <label class="mb-2  " style="font-weight: 600;">State:</label>
+             
+      {{form.state}}
+     </div> 
+
+     <div data-mdb-input-init class="form-outline mb-4 ">
+      <label class="mb-2  " style="font-weight: 600;">Pin Code:</label>
+             
+      {{form.postal_code}}
+     </div> 
+     <div data-mdb-input-init class="form-outline mb-4">
+      <label class="mb-2  " style="font-weight: 600;">Phone Number:</label>
+             
+      {{form.phone_number}}
+     </div> 
+     <div data-mdb-input-init class="form-outline mb-4 ">
+      <label class="mb-2  " style="font-weight: 600;">Country:</label>
+             
+      {{form.country}}
+     </div> 
+        <button type="submit" class="btn btn-primary mt-3">Save</button>
+    </form>
+</div>
+    </div>
+  </section>
+{% endblock %}

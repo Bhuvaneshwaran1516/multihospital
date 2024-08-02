@@ -1,0 +1,48 @@
+{% extends 'index.html' %} 
+{% load static %}
+{% block content %}
+{% include 'nav/hospital.html' %}
+{% include 'message.html' %} 
+
+<style>
+    .w3l-about-breadcrumb .breadcrumb-bg-contact {
+    background-size: cover;
+    background-image: linear-gradient(to right, #17449e, rgba(26, 35, 129, 0.6)), url(static/images/appointment.jpg);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: center;
+    background-attachment: fixed; }
+  
+  .w3l-about-breadcrumb .breadcrumb-bg h2 {
+    font-size: 45px;
+    line-height: 50px;
+    color: #fff;
+    font-weight: 700; }   
+  
+  
+  </style>
+  <section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-contact py-5">
+        <div class="container py-lg-5 py-md-3 py-4 mt-5">
+        <h2>Remove Availability Information</h2>
+
+      </div>
+    </div>
+  </section>
+
+<!-- Contact section -->
+<section class="w3l-contact py-5" id="contact" align="center">
+  <div class="container py-lg-3" align="center">
+
+
+<div class="container">
+    <h2>Delete Hospital Availability</h2>
+    <p>Are you sure you want to delete "{{ hospital_avail.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm</button>
+        <a href="{% url 'availabilityinfo' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+  </div>
+</section>
+{% endblock %}

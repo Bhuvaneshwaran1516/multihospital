@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+{% include 'nav/hospital.html' %}
+{% include 'message.html' %} 
+<style>
+    .w3l-about-breadcrumb .breadcrumb-bg-contact {
+    background-size: cover;
+    background-image: linear-gradient(to right, #17449e, rgba(26, 35, 129, 0.6)), url(static/images/appointment.jpg);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: center;
+    background-attachment: fixed; }
+  
+  .w3l-about-breadcrumb .breadcrumb-bg h2 {
+    font-size: 45px;
+    line-height: 50px;
+    color: #fff;
+    font-weight: 700; }   
+  
+  
+  </style>
+
+<section class="w3l-about-breadcrumb">
+    <div class="breadcrumb-bg breadcrumb-bg-contact py-5">
+        <div class="container py-lg-5 py-md-3 py-4 mt-5">
+        <h2>Sent Request</h2>
+
+      </div>
+    </div>
+  </section>
+
+  
+
+  
+<div class="container text-center">
+    <h2 class="mt-3">Send Request for {{ hospital_avail.name }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mt-5 mb-5">
+        {{form.message}}
+    </div>
+    <div class="mb-5">
+        <button type="submit" class="btn btn-primary">Send Request</button>
+        <a href="{% url 'search' %}" class="btn btn-secondary">Cancel</a>
+    </div>
+    </form>
+{% endblock %}
