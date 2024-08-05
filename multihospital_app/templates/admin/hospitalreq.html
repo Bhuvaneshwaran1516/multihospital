@@ -45,45 +45,8 @@
          
 <div class="container">
     <h3 class="mb-3">Hospital Requests Information</h3>
-    <div class="table-responsive">
-    <table  width="100%" border="1" align="center">
-        <tr>
-             <td bgcolor="#91a1b8"><strong>Hospital Name</strong></td>
-          <td bgcolor="#91a1b8"><strong>Request Need</strong></td>
-          <td bgcolor="#91a1b8"><strong>Request Message</strong></td>
+   
 
-           <td bgcolor="#91a1b8"><strong>Request Date</strong></td>
-             <td bgcolor="#91a1b8"><strong>Status</strong></td>
-             <td bgcolor="#91a1b8"><strong>Action</strong></td>
-
-        </tr>
-        {% for request in hospital %}
-
-        <tr>
-       
-          <td>{{ request.from_user.username }}</td>
-          <td>{{ request.hospital_avail.name }}</td>
-              <td>{{ request.message }}</td>
-
-              <td>{{ request.date_created|date:"d-m-Y" }}</td>
-            <td>{{ request.get_status_display }}</td>   
-            <td>
-                {% if request.status == 'pending' %}
-                    <a href="{% url 'respond_to_request' request.id %}" class="btn btn-primary btn-sm">Respond</a>
-                {% else %}
-                    No actions available
-                {% endif %}
-            
-</td>   
-
-
-        </tr>
-       {% endfor %}
-
-      </table>
-    </div>
-
-    <h3 class="mt-5 mb-3">Accept/Reject Requests Information</h3>
     <div class="table-responsive">
     <table width="100%" border="1" align="center">
         <tr>
